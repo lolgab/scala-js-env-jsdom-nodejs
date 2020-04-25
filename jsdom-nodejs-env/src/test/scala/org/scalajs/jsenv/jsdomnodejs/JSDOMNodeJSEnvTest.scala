@@ -12,11 +12,12 @@ class JSDOMNodeJSEnvTest {
   @Test
   def historyAPI: Unit = {
     kit.withRun(
+        // language=JavaScript
         """
-        |console.log(window.location.href);
-        |window.history.pushState({}, "", "/foo");
-        |console.log(window.location.href);
-        """.stripMargin) {
+        console.log(window.location.href);
+        window.history.pushState({}, "", "/foo");
+        console.log(window.location.href);
+        """) {
       _.expectOut("http://localhost/\n")
         .expectOut("http://localhost/foo\n")
     }

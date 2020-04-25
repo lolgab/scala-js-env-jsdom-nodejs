@@ -6,7 +6,6 @@ import sbtrelease.ReleaseStateTransformations._
 
 
 inThisBuild(Seq(
-  version := "2.0.0",
   organization := "net.exoego",
 
   scalaVersion := crossScalaVersions.value.head,

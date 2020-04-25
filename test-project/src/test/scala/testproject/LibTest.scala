@@ -1,7 +1,5 @@
 package testproject
 
-import scala.scalajs.js
-
 import org.junit.Test
 import org.junit.Assert._
 

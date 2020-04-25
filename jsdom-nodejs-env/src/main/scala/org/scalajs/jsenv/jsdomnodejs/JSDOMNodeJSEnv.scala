@@ -8,9 +8,6 @@
 
 package org.scalajs.jsenv.jsdomnodejs
 
-import scala.annotation.tailrec
-
-import scala.collection.immutable
 import scala.util.control.NonFatal
 
 import java.io._
@@ -123,35 +120,7 @@ class JSDOMNodeJSEnv(config: JSDOMNodeJSEnv.Config) extends JSEnv {
                window.document.body.appendChild(script);
              }
            } else {
-             // jsdom v9.x
-             var virtualConsole = jsdom.createVirtualConsole()
-               .sendTo(console, { omitJsdomErrors: true });
-             virtualConsole.on("jsdomError", function (error) {
-               /* This inelegant if + console.error is the only way I found
-                * to make sure the stack trace of the original error is
-                * printed out.
-                */
-               if (error.detail && error.detail.stack)
-                 console.error(error.detail.stack);
-         
-               // Throw the error anew to make sure the whole execution fails
-               throw error;
-             });
-         
-             jsdom.env({
-               html: "",
-               virtualConsole: virtualConsole,
-               url: "http://localhost/",
-               created: function (error, window) {
-                 if (error == null) {
-                   window["scalajsCom"] = global.scalajsCom;
-                   window["require"] = global.require;
-                 } else {
-                   throw error;
-                 }
-               },
-               scripts: $scriptsURIsJSArray
-             });
+             throw new Error("jsdom v10.0.0 or newer must be used required.")
            }
          })();
          """

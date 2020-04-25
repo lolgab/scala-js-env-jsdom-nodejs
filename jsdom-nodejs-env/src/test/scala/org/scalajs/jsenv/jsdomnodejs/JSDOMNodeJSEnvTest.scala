@@ -22,4 +22,17 @@ class JSDOMNodeJSEnvTest {
         .expectOut("http://localhost/foo\n")
     }
   }
+
+  @Test
+  def nodejsRequire: Unit = {
+    kit.withRun(
+      // language=JavaScript
+      """
+      const fs = require("fs");
+      console.log(fs != null);
+      console.log(typeof fs.write === "function");
+      """) {  run =>
+      run.expectOut("true\n")
+    }
+  }
 }

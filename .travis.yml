@@ -2,10 +2,10 @@ sudo: false
 language: scala
 scala:
   - 2.11.12
-  - 2.12.10
-  - 2.13.1
+  - 2.12.11
+  - 2.13.2
 jdk:
-  - openjdk8
+  - openjdk11
 env:
   - JSDOM_VERSION=9.12.0
   - JSDOM_VERSION=10.0.0

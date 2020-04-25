@@ -111,7 +111,9 @@ class JSDOMNodeJSEnv(config: JSDOMNodeJSEnv.Config) extends JSEnv {
              });
          
              var window = dom.window;
-             window["scalajsCom"] = global.scalajsCom;
+             ["scalajsCom", "require"].forEach(name => {
+               window[name] = global[name];
+             });
          
              var scriptsSrcs = $scriptsURIsJSArray;
              for (var i = 0; i < scriptsSrcs.length; i++) {

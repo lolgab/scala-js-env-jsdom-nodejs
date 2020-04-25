@@ -6,7 +6,7 @@
 **                          |/____/                                     **
 \*                                                                      */
 
-package org.scalajs.jsenv.jsdomnodejs
+package net.exoego.jsenv.jsdomnodejs
 
 import scala.util.control.NonFatal
 

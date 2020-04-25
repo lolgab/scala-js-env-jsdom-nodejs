@@ -1,6 +1,6 @@
 inThisBuild(Seq(
-  version := "1.0.1-SNAPSHOT",
-  organization := "org.scala-js",
+  version := "2.0.0-SNAPSHOT",
+  organization := "net.exoego",
 
   scalaVersion := crossScalaVersions.value.head,
   scalacOptions ++= Seq("-deprecation", "-feature", "-Xfatal-warnings"),
@@ -83,5 +83,5 @@ lazy val `test-project`: Project = project.
   enablePlugins(ScalaJSJUnitPlugin).
   settings(
     scalaJSUseMainModuleInitializer := true,
-    jsEnv := new org.scalajs.jsenv.jsdomnodejs.JSDOMNodeJSEnv()
+    jsEnv := new net.exoego.jsenv.jsdomnodejs.JSDOMNodeJSEnv()
   )

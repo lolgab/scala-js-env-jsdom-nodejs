@@ -1,4 +1,4 @@
-package org.scalajs.jsenv.jsdomnodejs
+package net.exoego.jsenv.jsdomnodejs
 
 import scala.concurrent.duration._
 

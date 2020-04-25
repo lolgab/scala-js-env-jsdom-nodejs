@@ -8,9 +8,6 @@
 
 package org.scalajs.jsenv.jsdomnodejs
 
-import scala.annotation.tailrec
-
-import scala.collection.immutable
 import scala.util.control.NonFatal
 
 import java.io._

@@ -13,13 +13,13 @@ distribution.
 Add the following line to `project/plugins.sbt`:
 
 ```scala
-libraryDependencies += "org.scala-js" %% "scalajs-env-jsdom-nodejs" % "1.0.0"
+libraryDependencies += "net.exoego" %% "scalajs-env-jsdom-nodejs" % "2.0.0"
 ```
 
 and the following line to `build.sbt` (possibly in the `settings`/`jsSettings` of Scala.js projects):
 
 ```scala
-jsEnv := new org.scalajs.jsenv.jsdomnodejs.JSDOMNodeJSEnv()
+jsEnv := new net.exoego.jsenv.jsdomnodejs.JSDOMNodeJSEnv()
 ```
 
 See [the Scaladoc](https://javadoc.io/doc/org.scala-js/scalajs-env-jsdom-nodejs_2.13/latest/org/scalajs/jsenv/jsdomnodejs/index.html) for other configuration options.

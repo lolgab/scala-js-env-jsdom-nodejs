@@ -1,12 +1,14 @@
 # scalajs-env-jsdom-nodejs
 
-`scalajs-env-jsdom-nodejs` is a JavaScript environment for Scala.js (a `JSEnv`)
-running [Node.js](https://nodejs.org/) with
-[jsdom](https://github.com/tmpvar/jsdom).
+This is a fork of [scalajs-env-jsdom-nodejs](https://github.com/scala-js/scala-js-env-jsdom-nodejs)
+providing a JavaScript environment for Scala.js (a `JSEnv`) running [Node.js](https://nodejs.org/) with
+[jsdom](https://github.com/jsdom/jsdom),
+and with `require` function which allows to require/import Node.js modules (e.g. `fs`).
 
-This repository contains `scalajs-env-jsdom-nodejs` for Scala.js 1.x. In
-Scala.js 0.6.x, the Node.js with jsdom environment is part of the core
-distribution.
+You may find `require` function useful when you need to read/write files during testing, for example.
+
+When working with Node.js modules, [scala-js-nodejs](https://github.com/exoego/scala-js-nodejs)
+might be handy since it provide types and utility functions.
 
 ## Usage
 
@@ -21,5 +23,3 @@ and the following line to `build.sbt` (possibly in the `settings`/`jsSettings` o
 ```scala
 jsEnv := new net.exoego.jsenv.jsdomnodejs.JSDOMNodeJSEnv()
 ```
-
-See [the Scaladoc](https://javadoc.io/doc/org.scala-js/scalajs-env-jsdom-nodejs_2.13/latest/org/scalajs/jsenv/jsdomnodejs/index.html) for other configuration options.

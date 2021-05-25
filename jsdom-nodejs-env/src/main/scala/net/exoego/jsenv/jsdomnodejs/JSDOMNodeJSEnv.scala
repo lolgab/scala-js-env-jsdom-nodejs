@@ -8,11 +8,13 @@
 
 package net.exoego.jsenv.jsdomnodejs
 
+import com.google.common.io.ByteStreams
+
 import scala.util.control.NonFatal
 
 import java.io._
 import java.nio.charset.StandardCharsets
-import java.nio.file.{Files, Path, StandardCopyOption}
+import java.nio.file.{Files, Path, StandardCopyOption, StandardOpenOption}
 import java.net.URI
 
 import com.google.common.jimfs.Jimfs
@@ -51,6 +53,9 @@ class JSDOMNodeJSEnv(config: JSDOMNodeJSEnv.Config) extends JSEnv {
     input.map {
       case Input.Script(script) =>
         script
+
+      case Input.CommonJSModule(module) =>
+        JSDOMNodeJSEnv.wrapAsFunctionCallThis(module)
 
       case _ =>
         throw new UnsupportedInputException(input)
@@ -192,6 +197,30 @@ object JSDOMNodeJSEnv {
     } finally {
       in.close()
     }
+  }
+
+  /*
+   * The reason to add this hack is performance degradation.
+   * Details:
+   *  - https://github.com/scala-js/scala-js/issues/4489
+   *  - https://github.com/jsdom/jsdom/issues/3193
+   */
+  private def wrapAsFunctionCallThis(path: Path): Path = {
+    val suffix = tmpSuffixRE.findFirstIn(path.getFileName.toString).orNull
+
+    val f = File.createTempFile("tmp-", suffix)
+    f.deleteOnExit()
+    val w = f.toPath
+    val out = Files.newOutputStream(w, StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING)
+    val writer = new BufferedWriter(new OutputStreamWriter(out))
+    writer.write("(function(){")
+    writer.newLine()
+    writer.flush()
+    ByteStreams.copy(Files.newInputStream(path), out)
+    writer.write("}).call(this);")
+    writer.newLine()
+    writer.close()
+    w
   }
 
   private def materialize(path: Path): URI = {

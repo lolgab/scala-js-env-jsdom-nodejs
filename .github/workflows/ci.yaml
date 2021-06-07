@@ -16,6 +16,6 @@ jobs:
       - uses: coursier/cache-action@v6
       - run: npm install jsdom@${{ matrix.jsdom }}
       - name: Run core
-        run: sbt ++ scalajs-env-jsdom-nodejs/test scalajs-env-jsdom-nodejs/doc
+        run: sbt ++scalajs-env-jsdom-nodejs/test ++scalajs-env-jsdom-nodejs/doc
       - name: Run test-project
-        run: sbt ++ test-project/run test-project/test
+        run: sbt ++test-project/run ++test-project/test

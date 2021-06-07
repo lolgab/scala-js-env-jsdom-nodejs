@@ -69,7 +69,7 @@ lazy val root: Project = project.in(file(".")).
       clean in `scalajs-env-jsdom-nodejs`,
       clean in `test-project`
     ).value
-  )
+  ).aggregate(`scalajs-env-jsdom-nodejs`, `test-project`)
 
 lazy val `scalajs-env-jsdom-nodejs`: Project = project.in(file("jsdom-nodejs-env")).
   settings(

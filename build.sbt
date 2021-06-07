@@ -35,15 +35,14 @@ val commonSettings = Def.settings(
   publishMavenStyle := true,
   pomIncludeRepository := { _ => false },
 
-  publishTo in ThisBuild := sonatypePublishToBundle.value,
-  publishArtifact in Test := false,
-  publishArtifact in (Compile, packageDoc) := true,
-  publishArtifact in (Compile, packageSrc) := true,
+  ThisBuild / publishTo := sonatypePublishToBundle.value,
+  Test / publishArtifact := false,
+  Compile / packageDoc / publishArtifact := true,
+  Compile / packageSrc / publishArtifact := true,
   sonatypeTimeoutMillis := 3 * 60 * 60 * 1000,
   publishConfiguration := publishConfiguration.value.withOverwrite(true),
   publishLocalConfiguration := publishLocalConfiguration.value.withOverwrite(true),
-  publishArtifact in packageDoc := false,
-  sources in (Compile, doc) := Seq.empty,
+  Compile / doc / sources := Seq.empty,
   releasePublishArtifactsAction := PgpKeys.publishSigned.value,
   releaseProcess := Seq[ReleaseStep](
     checkSnapshotDependencies,
@@ -60,14 +59,9 @@ val commonSettings = Def.settings(
 
 lazy val root: Project = project.in(file(".")).
   settings(
-    publishArtifact in Compile := false,
+    Compile / publishArtifact := false,
     publish := {},
     publishLocal := {},
-
-    clean := clean.dependsOn(
-      clean in `scalajs-env-jsdom-nodejs`,
-      clean in `test-project`
-    ).value
   ).aggregate(`scalajs-env-jsdom-nodejs`, `test-project`)
 
 lazy val `scalajs-env-jsdom-nodejs`: Project = project.in(file("jsdom-nodejs-env")).

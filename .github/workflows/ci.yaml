@@ -6,7 +6,6 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        scala: [2.13.6, 2.12.14, 2.11.12]
         jsdom: [16.2.2, 16.6.0]
     steps:
       # TODO: Ensure Node.js v12+
@@ -17,6 +16,6 @@ jobs:
       - uses: coursier/cache-action@v6
       - run: npm install jsdom@${{ matrix.jsdom }}
       - name: Run core
-        run: sbt ++${{ matrix.scala }} scalajs-env-jsdom-nodejs/test scalajs-env-jsdom-nodejs/doc
+        run: sbt ++ scalajs-env-jsdom-nodejs/test scalajs-env-jsdom-nodejs/doc
       - name: Run test-project
-        run: sbt ++${{ matrix.scala }} test-project/run test-project/test
+        run: sbt ++ test-project/run test-project/test

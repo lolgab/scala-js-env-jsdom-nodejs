@@ -5,10 +5,14 @@ import sbtrelease.ReleasePlugin.autoImport._
 import sbtrelease.ReleaseStateTransformations._
 
 
+lazy val scala213 = "2.13.6"
+lazy val scala212 = "2.12.14"
+lazy val scala211 = "2.11.12"
+
 inThisBuild(Seq(
   organization := "net.exoego",
-
-  scalaVersion := crossScalaVersions.value.head,
+  scalaVersion := scala213,
+  crossScalaVersions := Seq(scala213, scala212, scala211),
   scalacOptions ++= Seq("-deprecation", "-feature", "-Xfatal-warnings"),
 
   homepage := scmInfo.value.map(_.browseUrl),

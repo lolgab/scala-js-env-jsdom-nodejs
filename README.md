@@ -12,6 +12,8 @@ might be handy since it provide types and utility functions.
 
 ## Usage
 
+**Ensure `jsdom@16.3.0` or above is installed.**
+
 Add the following line to `project/plugins.sbt`:
 
 ```scala

@@ -4,9 +4,8 @@ import com.jsuereth.sbtpgp.SbtPgp.autoImport._
 import sbtrelease.ReleasePlugin.autoImport._
 import sbtrelease.ReleaseStateTransformations._
 
-
-lazy val scala213 = "2.13.6"
-lazy val scala212 = "2.12.14"
+lazy val scala213 = "2.13.4"
+lazy val scala212 = "2.12.13"
 lazy val scala211 = "2.11.12"
 
 inThisBuild(Seq(

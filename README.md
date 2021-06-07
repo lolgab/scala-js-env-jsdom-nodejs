@@ -17,7 +17,7 @@ might be handy since it provide types and utility functions.
 Add the following line to `project/plugins.sbt`:
 
 ```scala
-libraryDependencies += "net.exoego" %% "scalajs-env-jsdom-nodejs" % "2.0.0"
+libraryDependencies += "net.exoego" %% "scalajs-env-jsdom-nodejs" % "2.1.0"
 ```
 
 and the following line to `build.sbt` (possibly in the `settings`/`jsSettings` of Scala.js projects):

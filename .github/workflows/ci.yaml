@@ -1,0 +1,21 @@
+name: CI
+on: [pull_request]
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        jsdom: [16.3.0, 16.6.0]
+    steps:
+      # TODO: Ensure Node.js v12+
+      - uses: actions/checkout@v2.3.4
+      - uses: olafurpg/setup-scala@v11
+        with:
+          java-version: adopt@1.11
+      - uses: coursier/cache-action@v6
+      - run: npm install jsdom@${{ matrix.jsdom }}
+      - name: Run core
+        run: sbt ++scalajs-env-jsdom-nodejs/test ++scalajs-env-jsdom-nodejs/doc
+      - name: Run test-project
+        run: sbt ++test-project/run ++test-project/test

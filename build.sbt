@@ -4,11 +4,14 @@ import com.jsuereth.sbtpgp.SbtPgp.autoImport._
 import sbtrelease.ReleasePlugin.autoImport._
 import sbtrelease.ReleaseStateTransformations._
 
+lazy val scala213 = "2.13.4"
+lazy val scala212 = "2.12.13"
+lazy val scala211 = "2.11.12"
 
 inThisBuild(Seq(
   organization := "net.exoego",
-
-  scalaVersion := crossScalaVersions.value.head,
+  scalaVersion := scala213,
+  crossScalaVersions := Seq(scala213, scala212, scala211),
   scalacOptions ++= Seq("-deprecation", "-feature", "-Xfatal-warnings"),
 
   homepage := scmInfo.value.map(_.browseUrl),
@@ -65,7 +68,7 @@ lazy val root: Project = project.in(file(".")).
       clean in `scalajs-env-jsdom-nodejs`,
       clean in `test-project`
     ).value
-  )
+  ).aggregate(`scalajs-env-jsdom-nodejs`, `test-project`)
 
 lazy val `scalajs-env-jsdom-nodejs`: Project = project.in(file("jsdom-nodejs-env")).
   settings(

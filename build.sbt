@@ -85,5 +85,6 @@ lazy val `test-project`: Project = project.
   enablePlugins(ScalaJSJUnitPlugin).
   settings(
     scalaJSUseMainModuleInitializer := true,
+    scalaJSLinkerConfig ~= (_.withModuleKind(ModuleKind.CommonJSModule)),
     jsEnv := new net.exoego.jsenv.jsdomnodejs.JSDOMNodeJSEnv()
   )

@@ -11,4 +11,8 @@ class LibTest {
     Lib.appendDocument("foo")
     assertEquals(1, count - oldCount)
   }
+
+  @Test def osArch_should_works(): Unit = {
+    assertNotNull(OsArch())
+  }
 }

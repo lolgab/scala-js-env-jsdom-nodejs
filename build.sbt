@@ -69,11 +69,11 @@ lazy val `scalajs-env-jsdom-nodejs`: Project = project.in(file("jsdom-nodejs-env
     commonSettings,
 
     libraryDependencies ++= Seq(
-      "org.scala-js" %% "scalajs-js-envs" % scalaJSVersion,
-      "org.scala-js" %% "scalajs-env-nodejs" % scalaJSVersion,
+      "org.scala-js" %% "scalajs-js-envs" % MetaBuildShared.scalajsJsEnvsVersion,
+      "org.scala-js" %% "scalajs-env-nodejs" % MetaBuildShared.scalajsJsEnvsVersion,
 
       "com.novocode" % "junit-interface" % "0.11" % "test",
-      "org.scala-js" %% "scalajs-js-envs-test-kit" % scalaJSVersion % "test"
+      "org.scala-js" %% "scalajs-js-envs-test-kit" % MetaBuildShared.scalajsJsEnvsVersion % "test"
     )
   )
 
